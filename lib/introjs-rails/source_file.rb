@@ -10,7 +10,7 @@ class SourceFile < Thor
     filtered_tags = fetch_tags
     tag = select("Which tag do you want to fetch?", filtered_tags)
     self.destination_root = "app/assets"
-    remote = "https://github.com/usablica/intro.js"
+    remote = "https://github.com/uh-joan/intro.js"
     get "#{remote}/raw/#{tag}/minified/intro.min.js", "javascripts/introjs.js"
     get "#{remote}/raw/#{tag}/minified/introjs.min.css", "stylesheets/introjs.css"
   end
@@ -19,7 +19,7 @@ class SourceFile < Thor
 
   def fetch_tags
     http = HTTPClient.new
-    response = JSON.parse(http.get("https://api.github.com/repos/usablica/intro.js/tags").body)
+    response = JSON.parse(http.get("https://github.com/repos/uh-joan/intro.js/tags").body)
     response.map{|tag| tag["name"]}.sort
   end
   
